@@ -747,5 +747,4 @@ echo.
 echo.
 echo.
 echo.     %secondary%╭──%secondary%[%secondary%root%secondary%@%primary%beatricee%secondary%]
-set /p "choice=%DEL%     ╰────➤ "  
-                                    
+set /p "choice=%DEL%     ╰────➤ "                              
