@@ -26,6 +26,12 @@
 ::
 ::└───────────────────────────────────────────────┘ 𓇢𓆸
 ::  ₊˚⊹꒷ 
+goto ye
+
+:ye
+cls
+
+pause
 
 @echo off
 title beatrice
@@ -34,32 +40,8 @@ mode 93, 48
 for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1) do rem"') do (set "DEL=%%a" & set "COL=%%b")
 
 
-rem Codeto request Admin permissions in order to continue  ~ ʀᴇǫᴜɪʀᴇᴅ 
-if not "%1"=="am_admin" (powershell start -verb runas '%0' am_admin & exit)
+rem Code to request Admin permissions in order to continue  ~ ʀᴇǫᴜɪʀᴇᴅ 
+pause
+if not "%1"=="am_admin" (powershell start -verb runas '%0' am_admin & exit) 
 :: ⚠️ ɴᴏᴛ ʀᴜɴɴɪɴɢ ʙᴇᴀᴛʀɪᴄᴇᴇ ᴀѕ ᴀᴅᴍɪɴɪѕᴛʀᴀᴛᴏʀ ᴄᴏᴜʟᴅ ʟᴇᴀᴅ ɪɴᴛᴏ ᴛʜᴇ ѕᴇᴛᴛɪɴɢѕ ɴᴏᴛ ᴀᴘᴘʟʏɪɴɢ ᴘʀᴏᴘᴇʀʟʏ.
 
-goto Themes
-
-@setlocal enabledelayedexpansion
-
-:: Define the location of your JSON file (replace with actual path)
-set "json_file=default.json"
-
-:: Check if the JSON file exists
-if not exist "!json_file!" (
-  echo Error: File "!json_file!" not found.
-  exit /b 1
-)
-
-:: Use a parsing tool like jq (download from https://jqlang.github.io/jq/download/) to extract colors
-for /f "tokens=*" %%a in ('jq -r ".Colors[]" "!json_file!"') do (
-  set "!%%a!"=%%~a
-)
-
-echo Colors loaded from "!json_file!"
-
-:: Example usage (replace with your actual usage)
-echo !primary!This is the primary color.
-echo !secondary!This is the secondary color.
-
-endlocal
