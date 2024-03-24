@@ -26,20 +26,15 @@
 ::
 ::└───────────────────────────────────────────────┘ 𓇢𓆸
 ::  ₊˚⊹꒷ 
-goto ye
-
-:ye
-cls
-
-pause
 
 @echo off
 title beatrice
 chcp 65001
 mode 93, 48
 for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1) do rem"') do (set "DEL=%%a" & set "COL=%%b")
+goto admin.perms
 
-
+:admin.perms
 rem Code to request Admin permissions in order to continue  ~ ʀᴇǫᴜɪʀᴇᴅ 
 pause
 if not "%1"=="am_admin" (powershell start -verb runas '%0' am_admin & exit) 
