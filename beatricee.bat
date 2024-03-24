@@ -1,8 +1,17 @@
 :: 𐙚˙✧˖°📷 ༘ ⋆｡ ˚ 
 :: ♡₊˚ 🦢・₊✧⋆⭒˚｡⋆ hi, if you managed to somehow get this code,
 :: ✮ ⋆ ˚｡𖦹 ⋆｡°✩ you're cool now don't leak it ty.
-:: Made and maintained by mvk.web ~ beatricee.me
-:: ᯓ★  Start of the code is below
+::      GNU GENERAL PUBLIC LICENSE
+::                       Version 3, 29 June 2007
+::
+:: Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+:: Everyone is permitted to copy and distribute verbatim copies
+:: of this license document, but changing it is not allowed.
+::
+::                            Preamble
+::
+::  The GNU General Public License is a free, copyleft license for
+::                software and other kinds of works.
 ::
 :: *ੈ✩‧₊ ⋆˚🐾˖° *ੈ✩‧₊ ⋆˚  
 ::┌───────────────────────────────────────────────┐ 
@@ -16,9 +25,6 @@
 ::
 ::└───────────────────────────────────────────────┘ 𓇢𓆸
 ::  ₊˚⊹꒷ 
-
-:: ᴅᴇʟᴇᴛɪɴɢ ᴄᴀᴄʜᴇ ʙᴇꜰᴏʀᴇ ѕᴛᴀʀᴛᴜᴘ
-: code here needed
 
 @echo off
 title beatrice
