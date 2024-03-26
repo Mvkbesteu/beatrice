@@ -1,6 +1,6 @@
 @echo off
 cls
 
-echo. qqqqq
+echo. 3333
 
 pause
