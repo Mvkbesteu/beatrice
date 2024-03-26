@@ -1,3 +1,3 @@
 @echo off
 SET myVar1=Value
-SET myVar2= rrr3
+SET myVar2= waaa
