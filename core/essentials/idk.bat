@@ -1,6 +1,6 @@
 @echo off
 cls
 
-echo. work
+echo. work3
 
 pause
