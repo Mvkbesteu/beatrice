@@ -1,3 +1,3 @@
 @echo off
-SET myVar1=Value122
-SET myVar2= %os%
+SET myVar1=Value
+SET myVar2= YURRR
