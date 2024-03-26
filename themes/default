@@ -1,2 +1,2 @@
-SET myVar1=Value98643
-SET myVar2=790435
+SET myVar1=%username%
+SET myVar2=%os%
