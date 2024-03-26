@@ -38,24 +38,15 @@ rem Codeto request Admin permissions in order to continue  ~ ʀᴇǫᴜɪʀᴇ�
 if not "%1"=="am_admin" (powershell start -verb runas '%0' am_admin & exit)
 :: ⚠️ ɴᴏᴛ ʀᴜɴɴɪɴɢ ʙᴇᴀᴛʀɪᴄᴇᴇ ᴀѕ ᴀᴅᴍɪɴɪѕᴛʀᴀᴛᴏʀ ᴄᴏᴜʟᴅ ʟᴇᴀᴅ ɪɴᴛᴏ ᴛʜᴇ ѕᴇᴛᴛɪɴɢѕ ɴᴏᴛ ᴀᴘᴘʟʏɪɴɢ ᴘʀᴏᴘᴇʀʟʏ.
 
+:curl.check
+cls
+rem Check for curl existence
+curl --version >nul 2>&1
 
-goto Themes
-
-
-:Themes
-mkdir %systemdrive%\beatrice >nul 2>&1
-mkdir %systemdrive%\beatrice\themes >nul 2>&1
-SET file_url=https://raw.githubusercontent.com/Mvkbesteu/beatricee/main/themes/default.bat 
-SET save_path=%systemdrive%\beatrice\themes
-IF EXIST "%save_path%" (GOTO :DownloadFile) ELSE (
-  MKDIR "%save_path%"  && Create "assets" folder if it doesn't exist
+if errorlevel 1 (
+  goto curl.install
+) else (
+  echo Curl is installed.
 )
 
-:DownloadFile
-powershell -ExecutionPolicy Bypass -NoProfile -Command "& { Invoke-WebRequest -Uri '%file_url%' -OutFile '%save_path%\default.bat' }"
-
-echo Downloaded file: %save_path%\%file_url%
-cd "%systemdrive%\beatrice\themes"  && CALL default.bat
-echo My variable 1: %myVar1%
-echo My variable 2: %myVar2%
-pause
+pause>nul
