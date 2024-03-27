@@ -68,4 +68,4 @@ set emoji.success=
 set emoji.installer=%emoji.welcome%
 set emoji.welcome=👋
 set emoji.note=📑
-goto loader
+goto Loader
