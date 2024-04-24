@@ -38,7 +38,15 @@ rem Codeto request Admin permissions in order to continue  ~ ʀᴇǫᴜɪʀᴇ�
 if not "%1"=="am_admin" (powershell start -verb runas '%0' am_admin & exit)
 :: ⚠️ ɴᴏᴛ ʀᴜɴɴɪɴɢ ʙᴇᴀᴛʀɪᴄᴇᴇ ᴀѕ ᴀᴅᴍɪɴɪѕᴛʀᴀᴛᴏʀ ᴄᴏᴜʟᴅ ʟᴇᴀᴅ ɪɴᴛᴏ ᴛʜᴇ ѕᴇᴛᴛɪɴɢѕ ɴᴏᴛ ᴀᴘᴘʟʏɪɴɢ ᴘʀᴏᴘᴇʀʟʏ.
 
-goto checkup
+
+:: Checks if beatricee has ben ran before on this system.
+:old.check
+>nul 2>&1 call %systemdrive%\beatricee\config\core\checks\oldver.bat
+if "%firstlaunch%" equ "true" (
+    goto cli
+) ELSE (
+    goto dependency
+)
 
 
 :dependency
@@ -62,11 +70,8 @@ goto checkup
 :: Creating necessary directories in order t download required files.
 :: Do not skip this process, or else the program won't run.
 ::
-:: ᴄʀᴇᴀᴛᴇѕ ᴍᴀɪɴ ᴅɪʀᴇᴄᴛᴏʀʏ
-mkdir %systemdrive%\beatricee >nul 2>&1
-
 :: ᴄʀᴇᴀᴛᴇѕ ᴄᴏɴꜰɪɢ ᴅɪʀᴇᴄᴛᴏʀʏ
-mkdir %systemdrive%\beatricee\config\ >nul 2>&1
+mkdir %systemdrive%\beatricee\config\themes >nul 2>&1
 
 :: ᴄʀᴇᴀᴛᴇѕ ᴄᴏɴꜰɪɢ ⁄ ᴄᴏʀᴇ / ᴄʜᴇᴄᴋѕ
 mkdir %systemdrive%\beatricee\config\core\checks\ >nul 2>&1
@@ -79,44 +84,30 @@ goto yer
 
 :yer
 REM Set the URL of your .bat file
-set "url=https://raw.githubusercontent.com/Mvkbesteu/beatricee/main/core/essentials/idk.bat"
+set "default.theme=https://raw.githubusercontent.com/Mvkbesteu/beatricee/main/themes/default.bat"
+set "nature.theme=https://raw.githubusercontent.com/Mvkbesteu/beatricee/main/themes/nature.bat"
+set "blackberry.theme=https://raw.githubusercontent.com/Mvkbesteu/beatricee/main/themes/blackberry.bat"
 
 REM Set the target directory for installation
-set "target_dir=%systemdrive%\beatricee\config\core\checks\"
+set "target_dir=%systemdrive%\beatricee\config\themes\"
 
 REM Create the target directory if it doesn't exist (silent)
 if not exist "%target_dir%" mkdir "%target_dir%" > NUL
 
 REM Download the .bat file using curl (silent)
-curl -L -s -o "%target_dir%\idk.bat" "%url%"
+curl -L -s -o "%target_dir%\default.bat" "%default.theme%"
+REM Download the .bat file using curl (silent)
+curl -L -s -o "%target_dir%\nature.bat" "%nature.theme%
+REM Download the .bat file using curl (silent)
+curl -L -s -o "%target_dir%\blackberry.bat" "%blackberry.theme%"
 
 IF "%errorlevel%" EQU "0" (
-  cd %target_dir% & call idk.bat & goto Loader
+  cd %target_dir% & call default.bat & goto Loader
 ) ELSE (
-  ECHO Error downloading file! Check your internet connection or curl installation.
+  ECHO Error! File is missing. Check your internet connection or if curl is properly installed.
 )
-pause
-
-
-
-
-
-
-
-
-
-
-
-:Themes
-goto checkup
-
-:checkup
->nul 2>&1 call %systemdrive%\beatricee\config\core\checks\firstcheck.bat
-if "%firstlaunch%" equ "true" (
-    goto cli
-) ELSE (
-    goto dependency
-)
+pause>nul
+exit
 
 
 
@@ -177,3 +168,8 @@ echo.
 echo.     %secondary%╭──%secondary%[%secondary%root%secondary%@%primary%beatricee%secondary%]
 set /p "choice=%DEL%     ╰────➤ "  
 goto authentication
+
+:cli
+cls
+echo. yo
+pause
