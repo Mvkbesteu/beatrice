@@ -39,137 +39,27 @@ if not "%1"=="am_admin" (powershell start -verb runas '%0' am_admin & exit)
 :: ⚠️ ɴᴏᴛ ʀᴜɴɴɪɴɢ ʙᴇᴀᴛʀɪᴄᴇᴇ ᴀѕ ᴀᴅᴍɪɴɪѕᴛʀᴀᴛᴏʀ ᴄᴏᴜʟᴅ ʟᴇᴀᴅ ɪɴᴛᴏ ᴛʜᴇ ѕᴇᴛᴛɪɴɢѕ ɴᴏᴛ ᴀᴘᴘʟʏɪɴɢ ᴘʀᴏᴘᴇʀʟʏ.
 
 
-:: Checks if beatricee has ben ran before on this system.
-:old.check
->nul 2>&1 call %systemdrive%\beatricee\config\core\checks\oldver.bat
-if "%firstlaunch%" equ "true" (
-    goto cli
-) ELSE (
-    goto dependency
+
+:Themes
+
+:: Define the location of your JSON file (replace with actual path)
+set "json_file=colors.json"
+
+:: Check if the JSON file exists
+if not exist "!json_file!" (
+  echo Error: File "!json_file!" not found.
+  exit /b 1
 )
 
-
-:dependency
-
-:: *ੈ✩‧₊ ⋆˚🐾˖° *ੈ✩‧₊ ⋆˚  
-::┌───────────────────────────────────────────────┐ 
-::                            
-::      _           _        _ _           
-::     (_)_ __  ___| |_ __ _| | | ___ _ __ 
-::     | | '_ \/ __| __/ _` | | |/ _ \ '__|
-::     | | | | \__ \ || (_| | | |  __/ |   
-::     |_|_| |_|___/\__\__,_|_|_|\___|_|     Last Updated 3/26/2024                 
-::    • beatricee Dependencies Installer  1.0                v1.0.0-BETA                                                                                                  
-::	 
-::└───────────────────────────────────────────────┘ 𓇢𓆸
-::  ₊˚⊹꒷      
-::
-::
-:: 🍃 Dependencies installer.
-::
-:: Creating necessary directories in order t download required files.
-:: Do not skip this process, or else the program won't run.
-::
-:: ᴄʀᴇᴀᴛᴇѕ ᴄᴏɴꜰɪɢ ᴅɪʀᴇᴄᴛᴏʀʏ
-mkdir %systemdrive%\beatricee\config\themes >nul 2>&1
-
-:: ᴄʀᴇᴀᴛᴇѕ ᴄᴏɴꜰɪɢ ⁄ ᴄᴏʀᴇ / ᴄʜᴇᴄᴋѕ
-mkdir %systemdrive%\beatricee\config\core\checks\ >nul 2>&1
-
-:: ᴄʀᴇᴀᴛᴇѕ ᴀѕѕᴇᴛѕ ᴅɪʀᴇᴄᴛᴏʀʏ
-mkdir %systemdrive%\beatricee\assets >nul 2>&1
-goto yer
-
-
-
-:yer
-REM Set the URL of your .bat file
-set "default.theme=https://raw.githubusercontent.com/Mvkbesteu/beatricee/main/themes/default.bat"
-set "nature.theme=https://raw.githubusercontent.com/Mvkbesteu/beatricee/main/themes/nature.bat"
-set "blackberry.theme=https://raw.githubusercontent.com/Mvkbesteu/beatricee/main/themes/blackberry.bat"
-
-REM Set the target directory for installation
-set "target_dir=%systemdrive%\beatricee\config\themes\"
-
-REM Create the target directory if it doesn't exist (silent)
-if not exist "%target_dir%" mkdir "%target_dir%" > NUL
-
-REM Download the .bat file using curl (silent)
-curl -L -s -o "%target_dir%\default.bat" "%default.theme%"
-REM Download the .bat file using curl (silent)
-curl -L -s -o "%target_dir%\nature.bat" "%nature.theme%
-REM Download the .bat file using curl (silent)
-curl -L -s -o "%target_dir%\blackberry.bat" "%blackberry.theme%"
-
-IF "%errorlevel%" EQU "0" (
-  cd %target_dir% & call default.bat & goto Loader
-) ELSE (
-  ECHO Error! File is missing. Check your internet connection or if curl is properly installed.
+:: Use a parsing tool like jq (download from https://jqlang.github.io/jq/download/) to extract colors
+for /f "tokens=*" %%a in ('jq -r ".Colors[]" "!json_file!"') do (
+  set "!%%a!"=%%~a
 )
-pause>nul
-exit
 
+echo Colors loaded from "!json_file!"
 
+:: Example usage (replace with your actual usage)
+echo !primary!This is the primary color.
+echo !secondary!This is the secondary color.
 
-
-:: *ੈ✩‧₊ ⋆˚🐾˖° *ੈ✩‧₊ ⋆˚  
-::┌───────────────────────────────────────────────┐ 
-::                            
-::      _                 _           
-::     | | ___   __ _  __| | ___ _ __ 
-::     | |/ _ \ / _` |/ _` |/ _ \ '__|
-::     | | (_) | (_| | (_| |  __/ |   
-::     |_|\___/ \__,_|\__,_|\___|_|   
-::                                           Last Updated 3/26/2024                 
-::    • beatricee Loader 1.0                v1.0.0-BETA                                                                                                  
-::	 
-::└───────────────────────────────────────────────┘ 𓇢𓆸
-::  ₊˚⊹꒷      
-::
-
-:Loader
-cls
-echo.[48;2;17;17;26m                                                                                             %reset%                                 
-echo.        %primary%ཻུ۪۪♡.%reset%                       %primary%♪%reset%                               %primary%✎%reset%                   
-echo.                       %primary%✮⋆˙%reset% %primary%☾%reset%                              %primary%★彡%reset%       %primary%☁︎%reset%       %primary% ๋࣭⭑          ♱
-echo.                    %primary%𓍯𓂃%reset%              %primary%˗ˏˋ ♡ ˎˊ˗%reset%    %secondary%_         %primary%⊹ ࣪ ˖%reset%     %primary%  ౨ৎ    %reset%
-echo.              %primary%˙ᵕ˙%reset%        %primary%_%reset%     %primary%;༊%reset%         %primary%_%reset%       %secondary%(%primary%❦%reset%%secondary%)            
-echo.                        %primary%%blink%^| ^|__   ___  __ _^| ^|_ _ __ _  ___ ___%reset% %primary%%blink%ᶻ 𝗓 𐰁%reset%
-echo.                        %secondary%^| '%primary%%blink%_ %primary%\%reset% %secondary%/ _ \/ _` ^| __%primary%%blink%^| '__^| ^|%reset%%secondary%/ __/ _ %primary%%blink%\%reset%  
-echo.                       %thirdry%^| ^|_%primary%%blink%)%reset% %secondary%^|  __/ (_^| %secondary%^| ^|_^| ^|  %secondary%^| ^|%secondary% (_^|  __%primary%%blink%/%reset%%secondary%_ 
-echo.                       %thirdry%^|_.__/ \___^|\__,_^|\__^|_^|  ^|_^|\___\___(_) 
-echo.                                           %primary%%blink%★彡%reset%
-echo.                         
-echo.       
-echo.                    %outline%✛────────────────%shading1% %primary%⭒ ༺ ♰ ༻ ⭒ [0m%outline%────────────────✛
-echo.                              %shading1%You are %secondary%currently %shading1%running
-echo.                                    %backroundchng% %shading2%%localtwo% %reset%
-echo.
-echo.                                         %emoji.note%
-echo.                    %outline%⭒ ༺☽────────────%shading1% [48;2;21;21;21m %shading1%ᴄʜᴀɴɢᴇʟᴏɢ [0m%outline% ────────────☾༻ ⭒
-echo.                                
-echo.                         %backroundchng% %primary%+ %secondary%Please update in order to continue %reset%
-echo.                %backroundchng% %primary%+ %secondary%This version has bug fixes, new features ready to use %reset%               
-echo.                         %backroundchng% %primary%+ %secondary%Possible New Clients, Autoclickers %reset%   
-echo.
-echo.      
-echo.
-echo.
-echo.                                        %emoji.note%
-echo.                    %outline%⭒ ༺☽─────────────%shading1% [48;2;21;21;21m %shading1%ɴᴏᴛᴇ [0m%outline% ─────────────☾༻ ⭒
-echo.
-echo.                    %outline%• %secondary%Beatricee %shading1%is still in %backround2% %secondary%beta %shading1%access.%reset%
-echo.                    %outline%• %shading1%Please %secondary%report %shading1%any %secondary%bugs %shading1%if you've found.
-echo.    
-echo.    
-echo.
-echo.
-echo.
-echo.     %secondary%╭──%secondary%[%secondary%root%secondary%@%primary%beatricee%secondary%]
-set /p "choice=%DEL%     ╰────➤ "  
-goto authentication
-
-:cli
-cls
-echo. yo
-pause
+endlocal
