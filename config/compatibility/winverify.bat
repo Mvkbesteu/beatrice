@@ -20,4 +20,4 @@ if %os_ver% equ 05.2 set osName=Windows XP x64 or Server 2003
 if %os_ver% equ 05.1 set osName=Windows XP 
 if %os_ver% equ 05.0 set osName=Windows 2000  
 if %os_ver% lss 05.0 set osName=Windows ME or 98 or less 
-Set osName=%shading1%a %secondary%Unknown Windows
+Set osName=%secondary%Unknown Windows
