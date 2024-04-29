@@ -13,7 +13,7 @@
 ::  ₊˚⊹꒷      
 ::
 :: Colors                
-set iris=[38;2;27;162;140m
+set iris=[38;2;255;162;140m
 :: General Colors
 set primary=[38;2;57;37;190m
 set secondary=[38;2;56;54;64m
