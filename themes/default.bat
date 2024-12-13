@@ -15,7 +15,7 @@
 :: Colors                
 set iris=[38;2;255;162;140m
 :: General Colors
-set primary=[38;2;41;94;217m
+set primary=[38;2;77;62;140m
 set secondary=[38;2;56;54;64m
 set thirdry=[38;2;33;32;38m 
 set shading0=[38;2;255;255;255m
@@ -57,7 +57,7 @@ set manager=[38;2;48;127;125m
 :: Effects
 set blink=[5m
 set account.blink.off=%shading2%
-set account.blink.on=%primary%%blink%
+set account.blink.on=%secondary%%blink%
 set build=v%secondary%1.0.0%shading1%-%secondary%BETA
 :: Stages
 set setup.stages=17
