@@ -57,7 +57,7 @@ set manager=[38;2;48;127;125m
 :: Effects
 set blink=[5m
 set account.blink.off=%shading2%
-set account.blink.on=%secondary%%blink%
+set account.blink.on=%primary%%blink%
 set build=v%secondary%1.0.0%shading1%-%secondary%BETA
 :: Stages
 set setup.stages=17
