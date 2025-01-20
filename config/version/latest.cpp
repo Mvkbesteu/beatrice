@@ -1,1 +1,1 @@
-set local=v1.0.0-BETA
+set latest=v1.0.0-BETA
